@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+#student-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#students-list {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+    </style>
+     <script>
+        function addStudent() {
+    const name = document.getElementById('name').value;
+    const hobbies = document.getElementById('hobbies').value;
+    const github = document.getElementById('github').value;
+
+    if (name && hobbies && github) {
+        const studentInfo = document.createElement('div');
+        studentInfo.classList.add('student-info');
+        studentInfo.innerHTML = `
+            <h3>${name}</h3>
+            <p><strong>Hobbies:</strong> ${hobbies}</p>
+            <p><strong>GitHub:</strong> <a href="${github}" target="_blank">${github}</a></p>
+        `;
+
+        document.getElementById('students-list').appendChild(studentInfo);
+
+        // Clear input fields
+        document.getElementById('name').value = '';
+        document.getElementById('hobbies').value = '';
+        document.getElementById('github').value = '';
+    } else {
+        alert('Please fill in all the fields.');
+    }
+}
+    </script>
+    <header>
+        <h1>Student Bio Data</h1>
+    </header>
+
+    <section id="student-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label for="hobbies">Hobbies:</label>
+        <textarea id="hobbies" placeholder="Enter your hobbies"></textarea>
+
+        <label for="github">GitHub Link:</label>
+        <input type="text" id="github" placeholder="Enter your GitHub link">
+
+        <button onclick="addStudent()">Add Student</button>
+    </section>
+
+    <section id="students-list">
+        <!-- Student data will be displayed here -->
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

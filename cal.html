@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        input {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Simple Calculator</h2>
+    <table>
+        <tr>
+            <td><input type="text" id="result" disabled></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="appendNumber('7')"></td>
+            <td><input type="button" value="8" onclick="appendNumber('8')"></td>
+            <td><input type="button" value="9" onclick="appendNumber('9')"></td>
+            <td><input type="button" value="/" onclick="appendOperator('/')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="appendNumber('4')"></td>
+            <td><input type="button" value="5" onclick="appendNumber('5')"></td>
+            <td><input type="button" value="6" onclick="appendNumber('6')"></td>
+            <td><input type="button" value="-" onclick="appendOperator('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="appendNumber('1')"></td>
+            <td><input type="button" value="2" onclick="appendNumber('2')"></td>
+            <td><input type="button" value="3" onclick="appendNumber('3')"></td>
+            <td><input type="button" value="+" onclick="appendOperator('+')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" onclick="appendNumber('0')"></td>
+            <td><input type="button" value="." onclick="appendDot()"></td>
+            <td><input type="button" value="=" onclick="calculateResult()"></td>
+            <td><input type="button" value="C" onclick="clearResult()"></td>
+        </tr>
+    </table>
+
+    <script>
+        function appendNumber(number) {
+            document.getElementById('result').value += number;
+        }
+
+        function appendOperator(operator) {
+            document.getElementById('result').value += operator;
+        }
+
+        function appendDot() {
+            var currentResult = document.getElementById('result').value;
+            // Check if the last character is not a dot
+            if (currentResult.length === 0 || currentResult.charAt(currentResult.length - 1) !== '.') {
+                document.getElementById('result').value += '.';
+            }
+        }
+
+        function calculateResult() {
+            var currentResult = document.getElementById('result').value;
+            try {
+                var result = eval(currentResult);
+                document.getElementById('result').value = result;
+            } catch (error) {
+                alert('Invalid expression');
+            }
+        }
+
+        function clearResult() {
+            document.getElementById('result').value = '';
+        }
+    </script>
+
+</body>
+</html>
